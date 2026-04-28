@@ -92,4 +92,125 @@
             </tr>
             <tr>
                 <td class="fw-bold">Tanggal</td>
+                <td>:</td>
                 <td>
+                    <input type="date" name="tgl" class="form-control form-control-sm" style="font-weight: bold;">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p class="mb-1 fw-bold">SPECIFICATION :</p>
+    <table class="mb-4 w-100">
+        <tbody>
+            <tr>
+                <td width="120px">Mainboard</td>
+                <td width="10px">:</td>
+                <td><input type="text"></td>
+                <td width="30px"></td>
+                <td width="100px">GPU / VGA 1</td>
+                <td width="10px">:</td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td>Brand / Merek</td>
+                <td>:</td>
+                <td><input type="text"></td>
+                <td></td>
+                <td>GPU / VGA 2</td>
+                <td>:</td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td>Type</td>
+                <td>:</td>
+                <td><input type="text"></td>
+                <td></td>
+                <td>RAM</td>
+                <td>:</td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td>CPU</td>
+                <td>:</td>
+                <td><input type="text"></td>
+                <td></td>
+                <td>Storage</td>
+                <td>:</td>
+                <td><input type="text"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="table-responsive">
+        <table class="table table-sm table-bordered table-tebal">
+            <thead class="text-center align-middle">
+                <tr>
+                    <th rowspan="2" width="220px">ITEM PEMERIKSAAN</th>
+                    <th rowspan="2" width="50px" class="cek">GUIDE</th>
+                    <th colspan="2">KONDISI</th>
+                    <th rowspan="2">KETERANGAN TEKNIS</th>
+                </tr>
+                <tr>
+                    <th width="50px">OK</th>
+                    <th width="50px">NO</th>
+                </tr>
+            </thead>
+            <tbody>
+                <script>
+                    const items = [
+                        { name: "Fisik / Casing", link: "#" },
+                        { name: "Kondisi Layar (LCD)", link: "kondisi-layar.html" },
+                        { name: "Dot Pixel / Dead Pixel", link: "https://lcdtech.info/en/tests/dead.pixel.htm" },
+                        { name: "Jenis Layar (IPS/TN)", link: "jenis-layar.html" },
+                        { name: "Touch Screen", link: "https://urgent.id/touch" },
+                        { name: "Webcam / Kamera", link: "https://id.webcamtests.com/" },
+                        { name: "Speaker (L/R)", link: "https://www.youtube.com/watch?v=6TWJaFD6R2s" },
+                        { name: "Microphone Internal", link: "https://online-voice-recorder.com/id/" },
+                        { name: "Engsel / Hinges", link: "#" },
+                        { name: "Baterai (Health/Wear)", link: "cek-bateri.html" },
+                        { name: "Keyboard Keys", link: "cek-tombol-keyboard.html" },
+                        { name: "Keyboard Backlight", link: "#" },
+                        { name: "Touchpad & Klik", link: "#" },
+                        { name: "Finger Print", link: "#" },
+                        { name: "DVD Drive", link: "#" },
+                        { name: "Storage Health (SSD/HDD)", link: "cek-storage.html" },
+                        { name: "Ports (USB, HDMI, DLL)", link: "#" },
+                        { name: "Charger / Adapter", link: "#" },
+                        { name: "Task Manager Processes", link: "#" },
+                        { name: "Koneksi Wi-Fi", link: "#" },
+                        { name: "Koneksi Bluetooth", link: "#" },
+                        { name: "Office License", link: "#" },
+                        { name: "Status Garansi Resmi", link: "#" },
+                        { name: "Update BIOS", link: "#" },
+                        { name: "Suhu / Thermal Test", link: "#" }
+                    ];
+
+                    items.forEach(item => {
+                        document.write(`
+                            <tr class="align-middle">
+                                <td class="item">${item.name}</td>
+                                <td class="cek text-center"><a href="${item.link}" target="_blank">Lihat</a></td>
+                                <td class="text-center"><input type="checkbox" class="form-check-input"></td>
+                                <td class="text-center"><input type="checkbox" class="form-check-input"></td>
+                                <td><input type="text" class="ket" placeholder="..."></td>
+                            </tr>
+                        `);
+                    });
+                </script>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-3">
+        <span class="fw-bold" style="font-size: 14px;">CATATAN TAMBAHAN :</span>
+        <textarea name="ket-tambahan" id="ket-tambahan" rows="3" class="form-control mt-1" placeholder="Tulis diagnosa atau saran perbaikan di sini..."></textarea>
+    </div>
+
+    <div class="text-center mt-5 d-print-none">
+        <button onclick="window.print()" class="btn btn-dark btn-lg px-5 shadow">CETAK FORMULIR</button>
+    </div>
+</div>
+
+</body>
+</html>
