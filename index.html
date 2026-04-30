@@ -26,7 +26,6 @@
             padding: 20px;
         }
 
-        /* --- Container Utama --- */
         .dashboard-container {
             width: 100%;
             max-width: 650px;
@@ -36,7 +35,6 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.05);
         }
 
-        /* --- Bagian Judul --- */
         .header {
             text-align: center;
             margin-bottom: 35px;
@@ -50,16 +48,8 @@
             background: linear-gradient(135deg, #2b5dbb 0%, #3b71ed 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: -1px;
         }
 
-        .header p {
-            color: #7f8c8d;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-
-        /* --- Grid Menu Utama --- */
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -67,7 +57,6 @@
             margin-bottom: 25px;
         }
 
-        /* --- Style Tombol/Kartu --- */
         .menu-item {
             text-decoration: none;
             display: flex;
@@ -77,8 +66,7 @@
             padding: 25px;
             border-radius: 16px;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            cursor: pointer;
             border: 1px solid rgba(255,255,255,0.1);
         }
 
@@ -89,75 +77,59 @@
 
         .item-dark-blue {
             background: linear-gradient(135deg, #1a4a9c 0%, #3b71ed 100%);
-            box-shadow: 0 6px 15px rgba(26, 74, 156, 0.2);
-            grid-column: span 2; /* Tombol Utama tetap Full Width */
+            grid-column: span 2;
         }
 
-        .menu-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
+        .menu-item:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+        .menu-item i { font-size: 36px; color: rgba(255,255,255,0.8); margin-bottom: 12px; }
+        .menu-item span { font-size: 16px; font-weight: 600; color: white; }
 
-        .menu-item i {
-            font-size: 36px;
-            color: rgba(255,255,255,0.8);
-            margin-bottom: 12px;
-            transition: transform 0.3s ease;
-        }
-
-        .menu-item:hover i {
-            transform: scale(1.15) rotate(-5deg);
-            color: #ffffff;
-        }
-
-        .menu-item span {
-            font-size: 16px;
-            font-weight: 600;
-            color: white;
-            text-align: center;
-            letter-spacing: 0.3px;
-        }
-
-        /* --- Style Tombol Spesial --- */
-        .special-section {
-            margin-top: 10px;
-            padding-top: 20px;
-            border-top: 2px solid #e1e8ed;
-        }
-
-        .btn-special {
-            text-decoration: none;
+        /* --- Style Tambahan untuk Link Google Sheets (Dropdown) --- */
+        .sheets-wrapper {
+            grid-column: span 1; /* Pastikan tetap di grid */
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
             gap: 10px;
-            width: 100%;
-            padding: 18px;
-            border-radius: 14px;
-            font-weight: 600;
-            font-size: 16px;
-            color: white;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
         }
 
-        .special-red {
-            background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
-            box-shadow: 0 6px 15px rgba(255, 65, 108, 0.3);
+        .sub-links {
+            display: none; /* Tersembunyi secara default */
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 10px;
+            border: 1px dashed #cbd5e1;
         }
 
-        .special-red:hover {
-            box-shadow: 0 10px 25px rgba(255, 65, 108, 0.4);
-            filter: brightness(1.1);
+        .sub-links a {
+            display: block;
+            text-decoration: none;
+            color: #475569;
+            font-size: 13px;
+            padding: 8px;
+            border-radius: 8px;
+            transition: 0.2s;
         }
 
-        /* --- Responsif --- */
+        .sub-links a:hover { background: #e2e8f0; color: #1e293b; }
+        
+        /* Class untuk menampilkan dropdown via JS */
+        .show-links { display: block; animation: slideDown 0.3s ease; }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .special-section { margin-top: 10px; padding-top: 20px; border-top: 2px solid #e1e8ed; }
+        .btn-special {
+            text-decoration: none; display: flex; align-items: center; justify-content: center;
+            gap: 10px; width: 100%; padding: 18px; border-radius: 14px;
+            font-weight: 600; color: white; background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+        }
+
         @media (max-width: 500px) {
-            .dashboard-container { padding: 25px; }
-            .header h1 { font-size: 26px; }
             .menu-grid { grid-template-columns: 1fr; }
-            .item-dark-blue { grid-column: span 1; }
+            .item-dark-blue, .sheets-wrapper, .full-width { grid-column: span 1; }
         }
     </style>
 </head>
@@ -170,24 +142,29 @@
         </div>
 
         <div class="menu-grid">
-            <!-- 1. Tombol Utama (Lebar) -->
             <a href="https://monkeydredline-afk.github.io/monkeydredline.github.io/Form%20Pengecekan%20Laptop.html" class="menu-item item-dark-blue">
                 <i class='bx bx-laptop'></i>
                 <span>Cek Laptop Utama</span>
             </a>
 
-            <!-- 2. Baris Baru: Google Sheets & Aplikasi Teknisi -->
-            <a href="https://docs.google.com/spreadsheets/d/137LVtWZf3k825Eu9MiDBeRuaYWS7WaTBZteSMskhJVQ/edit?gid=962123916#gid=962123916" class="menu-item item-blue">
-                <i class='bx bxs-spreadsheet'></i>
-                <span>Google Sheets</span>
-            </a>
+            <!-- Dropdown Google Sheets -->
+            <div class="sheets-wrapper">
+                <div class="menu-item item-blue" onclick="toggleLinks()">
+                    <i class='bx bxs-spreadsheet'></i>
+                    <span>Google Sheets <i class='bx bx-chevron-down'></i></span>
+                </div>
+                <div id="extraLinks" class="sub-links">
+                    <a href="URL_LINK_1" target="_blank"><i class='bx bx-link-alt'></i> Link Database 1</a>
+                    <a href="URL_LINK_2" target="_blank"><i class='bx bx-link-alt'></i> Link Laporan Tim</a>
+                    <a href="https://docs.google.com/spreadsheets/d/137LVtWZf3k825Eu9MiDBeRuaYWS7WaTBZteSMskhJVQ/edit" target="_blank"><i class='bx bx-file'></i> List Laptop  Wana Satria Komputindo</a>
+                </div>
+            </div>
 
             <a href="https://u.pcloud.link/publink/show?code=kZIPED5ZD5C4enyhjAFP9eEi6w7LrRTmpz8X" class="menu-item item-blue">
                 <i class='bx bx-category-alt'></i>
                 <span>Aplikasi Teknisi</span>
             </a>
             
-            <!-- 3. Baris Selanjutnya: Laptop Jual & Cek Processor -->
             <a href="#" class="menu-item item-blue">
                 <i class='bx bx-dollar-circle'></i>
                 <span>Cek Laptop Jual</span>
@@ -198,20 +175,30 @@
                 <span>Cek Processor</span>
             </a>
             
-            <!-- 4. System Requirement (Lebar agar seimbang jika ganjil) -->
-            <a href="https://docs.google.com/spreadsheets/d/137LVtWZf3k825Eu9MiDBeRuaYWS7WaTBZteSMskhJVQ/edit?gid=962123916#gid=962123916" class="menu-item item-blue" style="grid-column: span 2;">
+            <a href="#" class="menu-item item-blue full-width" style="grid-column: span 2;">
                 <i class='bx bx-task'></i>
                 <span>System Requirement</span>
             </a>
         </div>
 
         <div class="special-section">
-            <a href="#" class="btn-special special-red">
+            <a href="#" class="btn-special">
                 <i class='bx bxs-star'></i>
                 <span>Lihat Produk Baru & Promo</span>
             </a>
         </div>
     </div>
+
+    <script>
+        function toggleLinks() {
+            var x = document.getElementById("extraLinks");
+            if (x.className.indexOf("show-links") == -1) {
+                x.className += " show-links";
+            } else {
+                x.className = x.className.replace(" show-links", "");
+            }
+        }
+    </script>
 
 </body>
 </html>
